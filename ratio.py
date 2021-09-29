@@ -60,4 +60,9 @@ def nombre_euler(n):
     
     return e
 
-print(nombre_euler(5))
+def nombre_pi(n):
+    pi=Rationnel(0,1)
+    for i in range(0,n+1):
+        pi+=Rationnel((-1)**i,2*i+1)
+    
+    return Rationnel(4,1)*pi
