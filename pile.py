@@ -1,44 +1,46 @@
-def pile():#retourne une liste vide
-    return[]
+class Pile():
+    def __init__(self):
+        self.L=[]
     
-# vide
-def vide(p):
-    """
-    renvoie True si la pile est videet False sinon"""
-    return p==[]
+    def vide(self):
+        return p==[]
+        
+    def depiler(self):
+        assert not self.vide(), "Pile vide"
+        return self.L.pop()
     
-# empiler
-def empiler(p,x):
-    "Ajoute l’élément x à la pile p"
-    p.append(x)
-
-# dépiler
-def depiler(p):
-    "dépile et renvoie l’élément au sommet de la pile p"
-    assert not vide(p), "Pile vide"
-    return p.pop()
+    def empiler(self, x):
+        self.L.append(x)
+        
+    def taille(self):
+        return len(self.L)
     
-#taille
-def taille(p):
-    return len(p)
-
-#élément en haut de la pile
-def sommet(p):
-    return p[-1]
+    def sommet(self):
+        return self.L[-1]
+    
     
 def verification(chaine):
-    pile1 = pile()
+    pile1 = Pile()
+    pile2 = Pile()
     for car in chaine:
         if car == '(':
-            empiler(pile1, 1)
+            pile1.empiler(1)
         elif car == ')':
-            if taille(pile1)==0:
+            if pile1.taille()==0:
                 return False
             else:
-                depiler(pile1)
-    if taille(pile1)==0:
+                pile1.depiler()
+                
+        elif car == '[':
+            pile2.empiler(1)
+        elif car == ']':
+            if pile2.taille()==0:
+                return False
+            else:
+                pile2.depiler()
+    if pile1.taille()==0 and pile2.taille()==0:
         return True
     else:
         return False
     
-print(verification('coucou(((istopgj))'))
+print(verification('())(()'))
