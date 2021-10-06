@@ -3,7 +3,7 @@ class Pile():
         self.L=[]
     
     def vide(self):
-        return p==[]
+        return self.L==[]
         
     def depiler(self):
         assert not self.vide(), "Pile vide"
@@ -43,4 +43,50 @@ def verification(chaine):
     else:
         return False
     
-print(verification('())(()'))
+#print(verification('())(()'))
+
+
+from copy import deepcopy
+
+laby=[[0,1,0,0,0,0],[0,1,1,1,1,0],[0,1,0,1,0,0],[0,1,0,1,1,0],[0,1,1,0,1,0],[0,0,0,0,1,0]]
+
+lignes=len(laby)
+colonnes=len(laby[1])
+
+for ligne in laby:
+    print(ligne)
+    
+def voisins(T,v):
+    V=[]
+    i,j=v[0],v[1]
+    for a in(-1,1):
+        if 0<=i+a<lignes:
+            if T[i+a][j]==1:
+                V.append((i+a,j))
+            if 0<=j+a<colonnes:
+                if T[i][j+a]==1:
+                    V.append((i,j+a))
+    return V
+
+def parcours(labyrinthe, entree, sortie):
+    T=labyrinthe
+    p=Pile()
+    v=entree
+    labyrinthe[v[0]][v[1]]=-1
+    recherche=True
+    while recherche==True:
+        vois=voisins(T,v)
+        if len(vois)==0:
+            p.depiler()
+            if p.vide()==True:
+                return False
+            else:
+                v=p.sommet()
+        else:
+            p.empiler(vois[0])
+            v=vois[0]
+            T[v[0]][v[1]]=-1
+            if v==sortie:
+                return p.L
+
+print(parcours(laby, (0,1), (5,4)))
