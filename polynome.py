@@ -1,19 +1,22 @@
 class Polynomial:
-    def __init__(self, polylist=[]):
-        if not isinstance(polylist, list):
+    """
+    classe travaillant sur des polynome ex: 2x² + 5x + 6
+    """
+    def __init__(self, polylist=[]): #initialisation du polynome à travers une liste
+        if not isinstance(polylist, list): # =on vérifie si c'est bien une liste
             raise ValueError("Ceci n'est pas une liste",str(polylist))
             
         self.lpolynome = polylist
         self.lpolynome = self.normalize()
     
-    def __add__(self, other):
-        return Polynomial(addition(self.lpolynome,other.lpolynome))
+    def __add__(self, other): #méthode permetant d'addtioner deux polynomes 
+        return Polynomial(addition(self.lpolynome,other.lpolynome)) #(passe à travers une fonction externe)
     
-    def __sub__(self, other):
-        return Polynomial(soustraction(self.lpolynome,other.lpolynome))
+    def __sub__(self, other): #méthode permetant de soustraire deux polynomes
+        return Polynomial(soustraction(self.lpolynome,other.lpolynome)) #(passe à travers une fonction externe)
     
-    def __mul__(self, other):
-        return Polynomial(multiply(self.lpolynome,other.lpolynome))
+    def __mul__(self, other): #méthode permetant de multiplier deux polynomes
+        return Polynomial(multiply(self.lpolynome,other.lpolynome)) #(passe à travers une fonction externe)
         
     def __pow__(self, other):
         return Polynomial(puissance(self.lpolynome,other.lpolynome))
@@ -127,25 +130,19 @@ p1=Polynomial([-2,5,0,-2,0,1])
 p2=Polynomial([-4,0,3,0,1])
 p3=p1-p2
 print(p3.lpolynome)
-
 p4=Polynomial([0,0,0,2,4,0,0,0])
 print(p4.lpolynome)
-
 p5=Polynomial([1,2,2,5])
 print(p5.degree())
-
 p6=Polynomial([1,6,4,8,0,0])
 p7=Polynomial([1,6,4,8])
 print(p6.equal(p7))
-
 p9=Polynomial([1,4,0,5])
 print(p9.to_string())
-
 p10=Polynomial([3,2,1])
 p11=Polynomial([1,4,2,4,3])
 p12=p10*p11
 print(p12.lpolynome)
-
 p13=Polynomial([2,3,2,5])
 p13.derivative()
 print(p13.lpolynome)
