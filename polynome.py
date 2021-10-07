@@ -44,7 +44,12 @@ class Polynomial:
     def derivative(self):
         new=[0]*(len(self.lpolynome)-1)
         for i in range(0, len(self.lpolynome)-1):
-            new[i]=self.lpolynome[i+1]
+            if i==0:
+                new[i]=self.lpolynome[i+1]*1
+            else:
+                new[i]=self.lpolynome[i+1]*(i+1)
+        self.lpolynome=new
+        return self.lpolynome
 
         self.lpolynome=new
         return self.lpolynome
