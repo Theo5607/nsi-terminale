@@ -116,6 +116,12 @@ def horner (p,e):
     return r
 for i in range(10):
     print(horner([3,2,1],i))
+    
+def mult_monomial(p,c,i):
+    for i in range(i):
+        p.insert(0,0)
+    return mult_scal(p,c)
+print(mult_monomial([3,2,1],3,3))
 """
 p1=Polynomial([-2,5,0,-2,0,1])
 p2=Polynomial([-4,0,3,0,1])
