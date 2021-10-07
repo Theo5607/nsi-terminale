@@ -41,6 +41,14 @@ class Polynomial:
         else:
             return False
             
+    def derivative(self):
+        new=[0]*(len(self.lpolynome)-1)
+        for i in range(0, len(self.lpolynome)-1):
+            new[i]=self.lpolynome[i+1]
+
+        self.lpolynome=new
+        return self.lpolynome
+
     def to_string(self):
         new_str=''
         for i in range(len(self.lpolynome),0,-1):
@@ -103,12 +111,15 @@ p6=Polynomial([1,6,4,8,0,0])
 p7=Polynomial([1,6,4,8])
 print(p6.equal(p7))
 
-
 p9=Polynomial([1,4,0,5])
 print(p9.to_string())
 
-p10=Polynomial([1,4,2])
-p11=Polynomial([3,2,1])
+p10=Polynomial([3,2,1])
+p11=Polynomial([1,4,2,4,3])
 p12=p10*p11
 print(p12.lpolynome)
+
+p13=Polynomial([2,3,2,5])
+p13.derivative()
+print(p13.lpolynome)
 """
