@@ -9,7 +9,7 @@ class Polynomial:
         self.lpolynome = polylist
         self.lpolynome = self.normalize()
     
-    def __add__(self, other): #méthode permetant d'addtioner deux polynomes 
+    def __add__(self, other): #méthode permetant d'addtioner deux polynomes
         return Polynomial(addition(self.lpolynome,other.lpolynome)) #(passe à travers une fonction externe)
     
     def __sub__(self, other): #méthode permetant de soustraire deux polynomes
@@ -62,9 +62,14 @@ class Polynomial:
         for i in range(len(self.lpolynome),0,-1):
             if i-1==0:
                 new_str+=str(self.lpolynome[i-1])
+            elif i-1==1:
+                new_str+=str(self.lpolynome[i-1])+'x'+'+'
             elif self.lpolynome[i-1]!=0:
                 new_str+=str(self.lpolynome[i-1])+'x^'+str(i-1)+'+'
         return new_str
+    
+    def __repr__(self):
+        return self.to_string()
     
 def addition(p1,p2):
     if len(p1)>len(p2) : new = [0]*len(p1)
@@ -107,43 +112,50 @@ def puissance(p1,n):
 def mult_scal(p,c):
     for i in range (len(p)):
         p[i]*=c
-    return p    
-print(mult_scal([3,2,1],3))
+    return p
 
-def horner (p,e):
+def horner(p,e):
     r=0
     i=0
     while i<=len(p)-1:
-        r= r * e   +p[len(p)-1-i]
+        r=r*e+p[len(p)-1-i]
         i+=1
     return r
-for i in range(10):
-    print(horner([3,2,1],i))
-    
+
 def mult_monomial(p,c,i):
     for i in range(i):
         p.insert(0,0)
     return mult_scal(p,c)
-print(mult_monomial([3,2,1],3,3))
+    
 """
 p1=Polynomial([-2,5,0,-2,0,1])
 p2=Polynomial([-4,0,3,0,1])
 p3=p1-p2
 print(p3.lpolynome)
+
 p4=Polynomial([0,0,0,2,4,0,0,0])
 print(p4.lpolynome)
+
 p5=Polynomial([1,2,2,5])
 print(p5.degree())
+
 p6=Polynomial([1,6,4,8,0,0])
+
 p7=Polynomial([1,6,4,8])
 print(p6.equal(p7))
+
 p9=Polynomial([1,4,0,5])
 print(p9.to_string())
+
 p10=Polynomial([3,2,1])
 p11=Polynomial([1,4,2,4,3])
 p12=p10*p11
 print(p12.lpolynome)
+
 p13=Polynomial([2,3,2,5])
 p13.derivative()
 print(p13.lpolynome)
+
+p14=Polynomial([1,2,4,8])
+print(p14)
 """
