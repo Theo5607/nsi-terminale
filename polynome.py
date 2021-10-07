@@ -95,6 +95,22 @@ def puissance(p1,n):
         new*=p1
 
     return new
+    
+def mult_scal(p,c):
+    for i in range (len(p)):
+        p[i]*=c
+    return p    
+print(mult_scal([3,2,1],3))
+
+def horner (p,e):
+    r=0
+    i=0
+    while i<=len(p)-1:
+        r= r * e   +p[len(p)-1-i]
+        i+=1
+    return r
+for i in range(10):
+    print(horner([3,2,1],i))
 """
 p1=Polynomial([-2,5,0,-2,0,1])
 p2=Polynomial([-4,0,3,0,1])
