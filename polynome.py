@@ -18,10 +18,10 @@ class Polynomial:
     def __mul__(self, other): #méthode permetant de multiplier deux polynomes
         return Polynomial(multiply(self.lpolynome,other.lpolynome)) #(passe à travers une fonction externe)
         
-    def __pow__(self, other):
-        return Polynomial(puissance(self.lpolynome,other.lpolynome))
+    def __pow__(self, other): #méthode permettant de mettre un polynome a la puissance n
+        return Polynomial(puissance(self.lpolynome,other.lpolynome)) #(passe à travers un fonction externe)
         
-    def normalize(self):
+    def normalize(self): #méthode permettant de supprimer les 0 inutiles dans la liste lpolynome
         liste_0 = []
         for el in self.lpolynome:
             if el==0:
@@ -32,10 +32,10 @@ class Polynomial:
         new = [self.lpolynome[el] for el in range(len(self.lpolynome)-len(liste_0))]
         return new
     
-    def degree(self):
+    def degree(self): #méthode qui renvoie le degré du polynome en parametre
         return len(self.lpolynome)-1
         
-    def equal(self, other):
+    def equal(self, other): #méthode qui renvoie True si deux polynomes sont égaux
         self.normalize()
         other.normalize()
         
@@ -44,7 +44,7 @@ class Polynomial:
         else:
             return False
             
-    def derivative(self):
+    def derivative(self): #méthode qui renvoie la dérivée d'un polynome
         new=[0]*(len(self.lpolynome)-1)
         for i in range(0, len(self.lpolynome)-1):
             if i==0:
@@ -57,7 +57,7 @@ class Polynomial:
         self.lpolynome=new
         return self.lpolynome
 
-    def to_string(self):
+    def to_string(self): #méthode qui renvoie un polynome sous forme de chaine de caractères
         new_str=''
         for i in range(len(self.lpolynome),0,-1):
             if i-1==0:
@@ -68,10 +68,10 @@ class Polynomial:
                 new_str+=str(self.lpolynome[i-1])+'x^'+str(i-1)+'+'
         return new_str
     
-    def __repr__(self):
+    def __repr__(self): #méthode qui appelle to_string()
         return self.to_string()
     
-def addition(p1,p2):
+def addition(p1,p2): #méthode appelée dans la classe pour additionner deux polynomes
     if len(p1)>len(p2) : new = [0]*len(p1)
     else : new = [0]*len(p2)
 
@@ -80,7 +80,7 @@ def addition(p1,p2):
 
     return new
     
-def soustraction(p1,p2):
+def soustraction(p1,p2): #méthode appelée dans la classe pour soustraire deux polynomes
     if len(p1)>len(p2) : 
         new = [0]*len(p1)
         for i in range(len(p1)-len(p2)):
@@ -94,7 +94,7 @@ def soustraction(p1,p2):
     
     return new
     
-def multiply(p1,p2):
+def multiply(p1,p2): #méthode appelée dans la classe pour multipliers deux polynomes
     new=[0]*(len(p1)+len(p2)-1)
     for i in range(len(p1)):
         for j in range(len(p2)):
@@ -102,19 +102,19 @@ def multiply(p1,p2):
     
     return new
     
-def puissance(p1,n):
+def puissance(p1,n): #méthode appelée dans la classe pour mettre un polynome a la puissance n
     new=1
     for i in range(n):
         new*=p1
 
     return new
     
-def mult_scal(p,c):
+def mult_scal(p,c): #méthode pour multiplier un polynome par un scalaire c
     for i in range (len(p)):
         p[i]*=c
     return p
 
-def horner(p,e):
+def horner(p,e): #méthode pour calculer l'image d'un polynome
     r=0
     i=0
     while i<=len(p)-1:
@@ -122,7 +122,7 @@ def horner(p,e):
         i+=1
     return r
 
-def mult_monomial(p,c,i):
+def mult_monomial(p,c,i): #méthode pour multplier un polynome par un scalaire à la puissance i
     for i in range(i):
         p.insert(0,0)
     return mult_scal(p,c)
