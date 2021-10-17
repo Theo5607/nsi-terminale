@@ -1,3 +1,6 @@
+#--Classe Principale------------------------------------------------------------
+
+
 class Polynomial:
     """
     classe travaillant sur des polynomes ex: 2x² + 5x + 6
@@ -110,6 +113,10 @@ def soustraction(p1,p2):
 
     return new
 
+
+#--Différentes fonctions externes qui interagissent avec la classe--------------
+
+
 def multiply(p1,p2):
     """
     -fonction appelée dans la classe pour multipliers deux polynomes
@@ -183,8 +190,8 @@ def mult(p1,p2):
     return tmp_mult
 
 
-#------------------------------------------------------------------------------------------------------------------
-#Tests dans le shell des differentes methodes
+#--Tests dans le shell des differentes methodes---------------------------------
+
 
 #Test de l'addition
 p1=Polynomial([1,2,3])
