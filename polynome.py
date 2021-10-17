@@ -3,7 +3,7 @@
 
 class Polynomial:
     """
-    classe travaillant sur des polynomes ex: 2x² + 5x + 6
+    Classe travaillant sur des polynomes ex: 2x² + 5x + 6
     """
     def __init__(self, polylist=[]): #initialisation du polynome à travers une liste
         if not isinstance(polylist, list): # =on vérifie si c'est bien une liste
