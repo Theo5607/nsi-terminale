@@ -107,9 +107,9 @@ def soustraction(p1,p2):
             p2.append(0)
     else:
         new = [0]*len(p2)
-        for i in range(len(p1)-len(p2)):
-            p2.append(0)
-
+        for i in range(len(p2)-len(p1)):
+            p1.append(0)
+            
     for i in range(len(p1)): new[i]= p1[i]-p2[i]
 
     return new
