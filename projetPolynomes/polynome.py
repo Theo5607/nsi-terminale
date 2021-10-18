@@ -23,7 +23,7 @@ class Polynomial:
         return Polynomial(multiply(self.lpolynome,other.lpolynome)) #(passe à travers une fonction externe)
 
     def __pow__(self, other): #méthode permettant de mettre un polynome à la puissance n
-        return Polynomial(puissance(self.lpolynome,other.lpolynome)) #(passe à travers un fonction externe)
+        return puissance(self,other) #(passe à travers un fonction externe)
 
     def normalize(self): #méthode permettant de supprimer les 0 inutiles dans la liste lpolynome
         liste_0 = []
@@ -55,9 +55,6 @@ class Polynomial:
                 new[i]=self.lpolynome[i+1]*1
             else:
                 new[i]=self.lpolynome[i+1]*(i+1)
-        self.lpolynome=new
-        return self.lpolynome
-
         self.lpolynome=new
         return self.lpolynome
 
@@ -137,7 +134,7 @@ def puissance(p1,n):
     -prend en arguments p1 un polynome sous forme de liste et n la puissance à laquelle on veut le mettre
     -retourne un nouveau polynome à la puissance demandée
     """
-    new=1
+    new=Polynomial([1])
     for i in range(n):
         new*=p1
 
